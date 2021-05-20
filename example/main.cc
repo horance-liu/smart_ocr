@@ -37,11 +37,22 @@ void exec(const char* file) {
   );
 }
 
+void usage(const char* prog) {
+    std::cout << "Usage: " << prog
+            << " path_to_usecase_in" 
+            << std::endl;
+}
+
 }
 
 int main(int argc, char** argv) {
   try {
+    if (argc < 2) {
+      usage(argv[0]);
+      return EXIT_FAILURE;
+    }
     exec(argv[1]);
+    return EXIT_SUCCESS;
   } catch (const std::invalid_argument& e) {
     std::cerr << "bad format: " << e.what() << std::endl;
     return EXIT_FAILURE;
@@ -49,5 +60,4 @@ int main(int argc, char** argv) {
     std::cerr << "unknown exception" << std::endl;
     return EXIT_FAILURE;
   }
-  return EXIT_SUCCESS;
 }
