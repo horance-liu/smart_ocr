@@ -29,5 +29,6 @@ if(BUILD_EXAMPLE)
 endif(BUILD_EXAMPLE)
 
 if(BUILD_TEST)
+    enable_testing()
     add_subdirectory(test)
 endif(BUILD_TEST)
