@@ -1,18 +1,19 @@
 #include "smart_ocr/sequence.h"
-#include "cctest/cctest.h"
-#include <stdexcept>
+#include "gtest/gtest.h"
 
-FIXTURE(SequenceTest) {
+struct SequenceTest : testing::Test 
+{
+protected:
   static void expect(
     Sequence::Lines lines, const std::string& expected) {
     ASSERT_EQ(expected, Sequence(lines).str());
   }
+};
 
-  TEST("711111111") {
-    expect({
+TEST_F(SequenceTest, no_guess_for_711_111_111) {
+  expect({
       " _                         ",
       "  |  |  |  |  |  |  |  |  |",
       "  |  |  |  |  |  |  |  |  |",
-    }, "711111111");
-  }
-};
+  }, "711111111");
+}
